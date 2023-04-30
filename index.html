@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width initial-scale=1.0 user-scalable=no">
+        <title>Incubator</title>
+
+        <link rel="stylesheet" href="sudoku.css">
+        <script src="sudoku.js"></script>
+    </head>
+
+
+    <body>
+    <h1>Sudoku</h1>
+    <div id="timer">00:00:00</div>
+
+    <div id="game-container" style="margin-left: 70px">
+        <div id="controls-container">
+            <button id="sol" type="button">Solution</button>
+            <button id="new-game">New Game</button>
+            <form id="difficulty">
+                <label><input type="radio" name="difficulty" value="easy" id="easy">Easy</label>
+                <label><input type="radio" name="difficulty" value="medium" id="medium">Medium</label>
+                <label><input type="radio" name="difficulty" value="hard" id="hard">Hard</label>
+            </form>
+        </div>
+        <div id="board-container">
+            <div id="board"></div>
+            <div id="errors-container">
+                <v2>Errors:</v2>
+                <h2 id="errors">0</h2>
+                <v2>Score:</v2>
+                <h2 id="score">0</h2>
+                <v2>Best score:</v2>
+                <h2 id="bestScore">0</h2>
+            </div>
+        </div>
+    </div>
+
+
+
+    <br>
+    <div id="digits">
+    </div>
+
+
+    <div class="popup">
+        <div class="popup-message">
+            <h2>Choose the selection</h2>
+            <p>Sorry, you did not select the difficulty.</p>
+            <button onclick="closePopup()">OK</button>
+        </div>
+    </div>
+
+    <div class="popup1">
+        <div class="popup-message1">
+            <h2>You Lose!</h2>
+            <p>Sorry, you did not complete the game successfully.</p>
+            <button onclick="closePopupLose()">OK</button>
+        </div>
+    </div>
+
+    <div class="popup2">
+        <div class="popup-message2">
+            <h2>You Win!</h2>
+            <p>Congratulations, you completed the game successfully!</p>
+            <button onclick="closePopupWin()">OK</button>
+        </div>
+    </div>
+
+
+    </body>
+    <script>
+        const newGame = document.getElementById("new-game");
+        const sol = document.getElementById("sol");
+        newGame.addEventListener("click", e => {
+            const easyRadio = document.getElementById("easy");
+            const mediumRadio = document.getElementById("medium");
+            const hardRadio = document.getElementById("hard");
+
+            if (easyRadio.checked) {
+                // Easy radio button is checked
+                clearTimer()
+                setGame()
+                setTimer()
+                sol.addEventListener("click", e => {
+                    showSolution()
+                    clearTimer()
+                })
+            } else if (mediumRadio.checked) {
+                // Medium radio button is checked
+                clearTimer()
+                setGame1()
+                setTimer()
+                sol.addEventListener("click", e => {
+                    showSolution()
+                    clearTimer()
+                })
+            } else if (hardRadio.checked) {
+                // Hard radio button is checked
+                clearTimer()
+                setGame2()
+                setTimer()
+                sol.addEventListener("click", e => {
+                    showSolution()
+                    clearTimer()
+                })
+            } else {
+                // No radio button is checked
+                openPopup()
+            }
+        })
+
+
+
+
+    </script>
+    <noscript>Enable JS</noscript>
+</html>
